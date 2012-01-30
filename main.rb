@@ -30,10 +30,14 @@ end
 class Issue < Hashie::Mash
   
   def self.all(repo, repo_name=nil)
-    resp = open("https://api.github.com/repos/#{repo}/issues?per_page=100") {|f| f.read}
-    issues = JSON.parse resp
-    issues.map {|i| i.merge!({:repo => repo_name})} if repo_name
-    issues.map {|i| new(i)}.select {|i| i.milestone}
+    begin
+      resp = open("https://api.github.com/repos/#{repo}/issues?per_page=50") {|f| f.read}
+      issues = JSON.parse resp
+      issues.map {|i| i.merge!({:repo => repo_name})} if repo_name
+      issues.map {|i| new(i)}.select {|i| i.milestone}
+    rescue
+      []
+    end
   end
     
 end
