@@ -1,0 +1,25 @@
+
+
+<% @grouped_issues.each do |milestone, issues| %>
+	<div class="alert-message <%= alert(milestone.due_on) %>">
+	<h2><%= milestone.title %><h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Repo</th>
+				<th>Issue</th>
+			</tr>
+		</thead>
+		<% issues.each do |issue| %>
+			<tr>
+				<td><%= issue.repo %></td>
+				<td>
+					<%= issue.title %>: <%= issue.body %>
+				</td>
+			</tr>
+		<% end %>
+	</table>
+	</div>
+<% end %>
+
+<%= @foo.inspect %>
