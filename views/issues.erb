@@ -5,7 +5,7 @@
 		<h2><%= milestone.title %><h2>
 
 		<% issues.each do |issue| %>
-			<h3><%= issue.repo %></h3>
+			<h3><%= issue.repo %> #<%= issue.number %></h3>
 			<p><%= issue.title %>: <%= issue.body %></p>
 	
 		<% end %>
