@@ -4,7 +4,17 @@ require 'hashie'
 
 class DueToday < Sinatra::Base
 
-  get "/issues/:user" do
+  get "/" do
+    erb :index
+  end
+
+  get "/repo/:user/:repo" do
+    repo = "#{params[:user]}/#{params[:repo]}"
+    @grouped_issues = Issue.all(repo, repo_name=repo.split("/")[1]).group_by {|i| i.milestone}.sort_by {|milestone, issues| milestone.due_on}
+    erb :issues
+  end
+
+  get "/:user" do
     repos = Repo.all(params[:user]).map {|r| r.name}
     @issues = []
     repos.each do |r| 
@@ -12,12 +22,6 @@ class DueToday < Sinatra::Base
     end
     @issues.flatten!
     @grouped_issues = @issues.group_by {|i| i.milestone}.sort_by {|milestone, issues| milestone.due_on}
-    erb :issues
-  end
-  
-  get "/repo/:user/:repo" do
-    repo = "#{params[:user]}/#{params[:repo]}"
-    @grouped_issues = Issue.all(repo, repo_name=repo.split("/")[1]).group_by {|i| i.milestone}.sort_by {|milestone, issues| milestone.due_on}
     erb :issues
   end
   
