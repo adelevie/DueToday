@@ -53,7 +53,7 @@ end
 def alert(n)
   due_on = Date.parse(n)
   today = Time.now.to_date
-  if due_on == today
+  if (due_on == today) or (due_on < today)
     "error"
   else
     "warning"

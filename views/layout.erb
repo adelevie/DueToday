@@ -1,12 +1,30 @@
 <html>
   <head>
+	
+	<meta charset="utf-8">
+	<title>Due Today</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 	<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+    <link href="/bootstrap.css" rel="stylesheet">
+    <link href="/bootstrap-responsive.css" rel="stylesheet">
+
   </head>
-  <body>
-	<div class="topbar">
-	      <div class="fill">
+
+  <body data-spy="scroll" data-target=".subnav" data-offset="100">
+	<div class="navbar navbar-fixed-top">
+	      <div class="navbar-inner">
 	        <div class="container">
+	          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	            <span class="i-bar"></span>
+	            <span class="i-bar"></span>
+	            <span class="i-bar"></span>
+	          </a>
 	          <a class="brand" href="/">Due Today</a>
+	          <div class="nav-collapse">
+	            
+	          </div>
 	        </div>
 	      </div>
 	    </div>
@@ -14,11 +32,16 @@
 	    <div class="container">
 
 	      <!-- Main hero unit for a primary marketing message or call to action -->
-	      <div class="hero-unit">
+	      
 			<%= yield %>
-	      </div>
+	      
 
-	    </div> <!-- /container -->
+      <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+
+      </footer>
+
+  </div> <!-- /container -->
 
   </body>
 </html>
